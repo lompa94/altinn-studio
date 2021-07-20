@@ -10,6 +10,7 @@ export interface IInputBaseProps {
   readOnly: boolean;
   required: boolean;
   formatting?: IInputFormatting;
+  placeholder: string
   handleDataChange: (value: any) => void;
 }
 
@@ -81,6 +82,7 @@ export function InputComponent(props: IInputProps) {
     isValid,
     formData,
     formatting,
+    placeholder,
     handleDataChange,
   } = props;
 
@@ -111,6 +113,7 @@ export function InputComponent(props: IInputProps) {
       aria-describedby={`description-${props.id}`}
       inputComponent={formatting?.number ? NumberFormatCustom : BasicInputComponent}
       inputProps={{ formatting }}
+      placeholder={placeholder}
     />
   );
 }
