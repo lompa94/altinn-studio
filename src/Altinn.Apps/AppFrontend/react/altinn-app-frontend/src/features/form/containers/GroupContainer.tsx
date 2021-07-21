@@ -88,6 +88,9 @@ export function GroupContainer({
     if (container.edit?.multiPage) {
       setMultiPageIndex(0);
     }
+    if (container.openDefault == true) {
+      onClickAdd();
+    }
   }, [container]);
 
   const onClickAdd = () => {
