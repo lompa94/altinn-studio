@@ -88,7 +88,8 @@ export function GroupContainer({
     if (container.edit?.multiPage) {
       setMultiPageIndex(0);
     }
-    if (container.openDefault == true) {
+
+    if (container.openDefault == true && repeatingGroupIndex == -1) {
       onClickAdd();
     }
   }, [container]);
