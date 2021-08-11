@@ -1,5 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
 import * as React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';

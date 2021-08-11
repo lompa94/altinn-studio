@@ -14,7 +14,6 @@ import { RadioButtonContainerComponent } from './base/RadioButtonsContainerCompo
 import { TextAreaComponent } from './base/TextAreaComponent';
 import { NavigationButtons as NavigationButtonsComponent } from './presentation/NavigationButtons';
 import { NavComponent } from './base/NavComponent';
-
 export interface IComponent {
   name: string;
   Tag: any;
