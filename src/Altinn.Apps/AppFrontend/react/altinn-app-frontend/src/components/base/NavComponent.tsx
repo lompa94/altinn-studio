@@ -52,7 +52,6 @@ export function NavComponent(props: INavComponent) {
   const pageList = orderedLayoutKeys.map((x) => 
     <li className={classes.li}><a className={classes.a} href="#" onClick={() => OnClickNav(x)}>{x}</a></li>
   );
-
   
   return (
     <Grid
