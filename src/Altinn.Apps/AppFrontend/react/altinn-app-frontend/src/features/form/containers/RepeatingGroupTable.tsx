@@ -11,6 +11,8 @@ import { getFormDataForComponentInRepeatingGroup, getTextResource } from 'src/ut
 import { ILayout, ILayoutComponent, ILayoutGroup } from '../layout';
 import { setupGroupComponents } from '../../../utils/layout';
 import { ITextResource, IRepeatingGroups, IValidations, IOptions } from '../../../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { FormLayoutActions } from '../layout/formLayoutSlice';
 
 export interface IRepeatingGroupTableProps {
   id: string;
@@ -161,6 +163,26 @@ export function RepeatingGroupTable({
     }
   };
 
+  const dispatch = useDispatch();
+  const [multiPageIndex, setMultiPageIndex] = React.useState<number>(-1);
+
+
+  const onClickRemove = (groupIndex: number) => {
+    dispatch(FormLayoutActions.updateRepeatingGroupsEditIndex({ group: id, index: -1 }));
+    dispatch(FormLayoutActions.updateRepeatingGroups({
+      layoutElementId: id,
+      remove: true,
+      index: groupIndex,
+    }));
+  };
+
+  const removeClicked = (groupIndex: number) => {
+    onClickRemove(groupIndex);
+    if (container.edit?.multiPage) {
+      setMultiPageIndex(0);
+    }
+  };
+
   const childElementHasErrors = (element: ILayoutGroup | ILayoutComponent, index: number) => {
     if (element.type === 'Group') {
       return childGroupHasErrors(element as ILayoutGroup, index);
@@ -235,6 +257,13 @@ export function RepeatingGroupTable({
                         `ai ai-circle-exclamation a-icon ${classes.errorIcon} ${classes.editIcon}` :
                         `fa fa-editing-file ${classes.editIcon}`}
                       />
+                    </IconButton>
+                    <IconButton
+                      style={{ color: 'black' }}
+                      onClick={() => removeClicked(index)}
+                    >
+                      {getLanguageFromKey('general.delete', language)}
+                      <i className='ai ai-trash'/>
                     </IconButton>
                   </TableCell>
                 </TableRow>);
