@@ -104,6 +104,7 @@ export function GroupContainer({
   };
 
   const onClickRemove = (groupIndex: number) => {
+    console.log("layoutElementId " + id + " groupIndex " + groupIndex);
     dispatch(FormLayoutActions.updateRepeatingGroupsEditIndex({ group: id, index: -1 }));
     dispatch(FormLayoutActions.updateRepeatingGroups({
       layoutElementId: id,

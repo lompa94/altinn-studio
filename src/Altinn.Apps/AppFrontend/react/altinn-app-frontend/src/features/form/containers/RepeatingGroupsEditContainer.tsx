@@ -85,6 +85,7 @@ export function RepeatingGroupsEditContainer({
   };
 
   const removeClicked = () => {
+    console.log("STLETTSLETT!!!")
     onClickRemove(editIndex);
     if (container.edit?.multiPage) {
       setMultiPageIndex(0);

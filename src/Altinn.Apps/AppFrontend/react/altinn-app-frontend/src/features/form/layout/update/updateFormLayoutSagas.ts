@@ -74,11 +74,13 @@ function* updateRepeatingGroupsSaga({ payload: {
         return children?.indexOf(element.id) > -1;
       },
     );
-
     childGroups?.forEach((group: ILayoutGroup) => {
+      console.log("KJØØØØØØØØRER!!! 1");
       if (remove) {
+        
         updatedRepeatingGroups = removeRepeatingGroupFromUIConfig(updatedRepeatingGroups, group.id, index, true);
       } else {
+        console.log("KJØØØØØØØØRER!!! 2");
         const groupId = `${group.id}-${newCount}`;
         updatedRepeatingGroups[groupId] = {
           count: -1,
@@ -95,9 +97,18 @@ function* updateRepeatingGroupsSaga({ payload: {
       const formDataState: IFormDataState = yield select(selectFormData);
       const state: IRuntimeState = yield select();
       const layout = formLayoutState.layouts[formLayoutState.uiConfig.currentView];
-      const updatedFormData = removeGroupData(formDataState.formData, index,
-        layout, layoutElementId, formLayoutState.uiConfig.repeatingGroups[layoutElementId]);
-
+      const updatedFormData = removeGroupData(
+        formDataState.formData, 
+        index,
+        layout, 
+        layoutElementId, 
+        formLayoutState.uiConfig.repeatingGroups[layoutElementId]
+      );
+      console.log("formDataState.formData " + formDataState.formData);
+      console.log("index " + index);
+      console.log("layout " + JSON.stringify(layout));
+      console.log("layoutElementId " + layoutElementId);
+      console.log("formLayoutState " + JSON.stringify(formLayoutState.uiConfig.repeatingGroups[layoutElementId]));
       // Remove the validations associated with the group
       const updatedValidations = removeGroupValidationsByIndex(
         layoutElementId, index, formLayoutState.uiConfig.currentView, formLayoutState.layouts,

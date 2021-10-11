@@ -102,10 +102,13 @@ const formLayoutSlice = createSlice({
       state.uiConfig.hiddenFields = componentsToHide;
     },
     updateRepeatingGroupsFulfilled: (state, action: PayloadAction<LayoutTypes.IUpdateRepeatingGroupsFulfilled>) => {
+      console.log("IUpdateRepeatingGroupsFulfilled kjører");
       const { repeatingGroups } = action.payload;
+      console.log("IUpdateRepeatingGroupsFulfilled kjører " + " repeatingGroups " + JSON.stringify(action.payload.repeatingGroups));
       state.uiConfig.repeatingGroups = repeatingGroups;
     },
     updateRepeatingGroupsRejected: (state, action: PayloadAction<LayoutTypes.IFormLayoutActionRejected>) => {
+      console.log("updateRepeatingGroupsRejected kjører");
       const { error } = action.payload;
       state.error = error;
     },
